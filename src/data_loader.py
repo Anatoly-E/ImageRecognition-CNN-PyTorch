@@ -24,10 +24,10 @@ class DataProcessor:
         for images, _ in loader:
             batch_samples = images.size(0)
             images = images.view(batch_samples, images.size(1), -1)
-            mean += images.mean(2).sum(0)
-            std += images.std(2).sum(0)
+            mean += images.mean(2).sum(0)   # Среднее по каналам
+            std += images.std(2).sum(0)     # STD по каналам
         
-        mean /= len(temp_set)
+        mean /= len(temp_set)               # Нормализуем по всему датасету
         std /= len(temp_set)
         
         self.channel_means = mean
